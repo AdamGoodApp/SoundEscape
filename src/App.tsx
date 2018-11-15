@@ -1,5 +1,6 @@
 import * as React from "react";
 import SoundGrid from "./components/SoundGrid/SoundGrid";
+import TimeLine from "./components/TimeLine/TimeLine";
 import "./App.css";
 
 class App extends React.Component {
@@ -11,6 +12,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <SoundGrid />
+        <TimeLine />
       </div>
     );
   }

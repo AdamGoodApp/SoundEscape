@@ -1,0 +1,6 @@
+.time-line-grid-container .time-line-item {
+  border-radius: 30px;
+  cursor: pointer;
+  height: 150px;
+  width: 100%;
+}

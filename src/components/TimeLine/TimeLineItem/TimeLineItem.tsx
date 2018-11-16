@@ -23,11 +23,7 @@ class TimeLineItem extends Component<Props, State> {
   }
 
   render() {
-    let { color } = this.state.sound;
-
-    return (
-      <div className="time-line-item" style={{ backgroundColor: color }} />
-    );
+    return <div className="time-line-item" />;
   }
 }
 

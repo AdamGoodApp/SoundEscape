@@ -22,8 +22,24 @@ class TimeLineItem extends Component<Props, State> {
     };
   }
 
+  onDragOver = (event: any) => {
+    event.preventDefault();
+  };
+
+  onDrop = (event: any) => {
+    event.preventDefault();
+    let sound = JSON.parse(event.dataTransfer.getData("sound"));
+    console.log(sound);
+  };
+
   render() {
-    return <div className="time-line-item" />;
+    return (
+      <div
+        className="time-line-item"
+        onDragOver={this.onDragOver}
+        onDrop={this.onDrop}
+      />
+    );
   }
 }
 

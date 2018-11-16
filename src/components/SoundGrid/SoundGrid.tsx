@@ -11,8 +11,8 @@ class SoundGrid extends Component {
   render() {
     return (
       <div className="sound-grid-container">
-        {Sounds.map((x: Sound) => (
-          <SoundItem sound={x} />
+        {Sounds.map((x: Sound, i: number) => (
+          <SoundItem sound={x} key={i} />
         ))}
       </div>
     );

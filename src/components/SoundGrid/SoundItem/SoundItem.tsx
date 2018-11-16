@@ -22,10 +22,22 @@ class SoundItem extends Component<Props, State> {
     };
   }
 
-  render() {
-    let { color } = this.state.sound;
+  onDragStart = (event: any, sound: any) => {
+    event.dataTransfer.setData("sound", JSON.stringify(sound));
+  };
 
-    return <div className="sound-item" style={{ backgroundColor: color }} />;
+  render() {
+    let { sound } = this.state;
+    let { color } = sound;
+
+    return (
+      <div
+        className="sound-item"
+        onDragStart={(e: any) => this.onDragStart(e, sound)}
+        draggable={true}
+        style={{ backgroundColor: color }}
+      />
+    );
   }
 }
 

@@ -11,8 +11,8 @@ class TimeLine extends Component {
   render() {
     return (
       <div className="time-line-grid-container">
-        {Sounds.map((x: Sound) => (
-          <TimeLineItem sound={x} />
+        {Sounds.map((x: Sound, i: any) => (
+          <TimeLineItem sound={x} key={i} />
         ))}
       </div>
     );

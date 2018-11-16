@@ -11,6 +11,7 @@ interface Props {
 
 interface State {
   sound: Sound;
+  color: string;
 }
 
 class TimeLineItem extends Component<Props, State> {
@@ -18,7 +19,8 @@ class TimeLineItem extends Component<Props, State> {
     super(props);
 
     this.state = {
-      sound: this.props.sound
+      sound: this.props.sound,
+      color: ""
     };
   }
 
@@ -28,16 +30,22 @@ class TimeLineItem extends Component<Props, State> {
 
   onDrop = (event: any) => {
     event.preventDefault();
-    let sound = JSON.parse(event.dataTransfer.getData("sound"));
-    console.log(sound);
+    let data = event.dataTransfer.getData("sound");
+
+    if (data) {
+      let sound = JSON.parse(event.dataTransfer.getData("sound"));
+      this.setState({ color: sound.color });
+    }
   };
 
   render() {
+    let { color } = this.state;
     return (
       <div
         className="time-line-item"
         onDragOver={this.onDragOver}
         onDrop={this.onDrop}
+        style={{ backgroundColor: color }}
       />
     );
   }

@@ -5,6 +5,7 @@ import "./SoundGrid.css";
 
 interface Sound {
   color: string;
+  url: string;
 }
 
 class SoundGrid extends Component {

@@ -3,6 +3,7 @@ import "./SoundItem.css";
 
 interface Sound {
   color: string;
+  url: string;
 }
 
 interface Props {
@@ -22,13 +23,23 @@ class SoundItem extends Component<Props, State> {
     };
   }
 
+  handleClick = (url: string) => {
+    const audio = new Audio(`http://docs.google.com/uc?export=open&id=${url}`);
+
+    console.log(`http://docs.google.com/uc?export=open&id=${url}`);
+
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+  };
+
   onDragStart = (event: any, sound: any) => {
     event.dataTransfer.setData("sound", JSON.stringify(sound));
   };
 
   render() {
     let { sound } = this.state;
-    let { color } = sound;
+    let { color, url } = sound;
 
     return (
       <div
@@ -36,6 +47,7 @@ class SoundItem extends Component<Props, State> {
         onDragStart={(e: any) => this.onDragStart(e, sound)}
         draggable={true}
         style={{ backgroundColor: color }}
+        onClick={() => this.handleClick(url)}
       />
     );
   }

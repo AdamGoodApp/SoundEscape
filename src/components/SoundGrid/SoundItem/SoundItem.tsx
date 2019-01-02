@@ -14,6 +14,8 @@ interface State {
   sound: Sound;
 }
 
+let prevAudio: any;
+
 class SoundItem extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -24,12 +26,15 @@ class SoundItem extends Component<Props, State> {
   }
 
   handleClick = (url: string) => {
+    if (prevAudio) {
+      prevAudio.pause();
+      prevAudio.currentTime = 0;
+    }
+
     const audio = new Audio(`http://docs.google.com/uc?export=open&id=${url}`);
 
-    console.log(`http://docs.google.com/uc?export=open&id=${url}`);
+    prevAudio = audio;
 
-    audio.pause();
-    audio.currentTime = 0;
     audio.play();
   };
 

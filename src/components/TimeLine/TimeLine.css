@@ -4,4 +4,18 @@
   justify-content: space-between;
   margin-top: 20px;
   padding: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-line-grid-container .play-button {
+  position: absolute;
+  top: -23px;
+  cursor: pointer;
+}
+
+.time-line-grid-container .play-button img {
+  width: 40px;
 }

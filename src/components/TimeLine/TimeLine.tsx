@@ -10,6 +10,7 @@ interface State {
 interface Sound {
   color: string;
   url: string;
+  id: string;
 }
 
 class TimeLine extends Component<any, State> {
@@ -22,25 +23,37 @@ class TimeLine extends Component<any, State> {
   }
 
   addToTimeLine = (sound: Sound) => {
-    console.log(sound);
-    // const { timeLine } = this.state;
-    // let updateTimeLine = [...timeLine];
+    const { timeLine } = this.state;
+    this.setState({ timeLine: [...timeLine, sound] });
+  };
 
-    // updateTimeLine.find((e: any) => {
-    //   if (e.id === sound.id) {
+  handlePlayClick = (index: number = 0) => {
+    const { timeLine } = this.state;
 
-    //   }
+    if (index >= timeLine.length) {
+      return true;
+    }
 
-    // });
+    const audio = new Audio();
 
-    // console.log(updateTimeLine);
-    // this.setState({ timeLine: [...timeLine, sound] });
+    audio.src = `http://docs.google.com/uc?export=open&id=${
+      timeLine[index].url
+    }`;
+
+    audio.play();
+
+    audio.onended = () => {
+      this.handlePlayClick(index + 1);
+    };
   };
 
   render() {
-    console.log(this.state.timeLine);
     return (
       <div className="time-line-grid-container">
+        <div className="play-button" onClick={() => this.handlePlayClick()}>
+          Play Button
+        </div>
+
         {Sounds.map((x: Sound, i: any) => (
           <TimeLineItem
             sound={x}

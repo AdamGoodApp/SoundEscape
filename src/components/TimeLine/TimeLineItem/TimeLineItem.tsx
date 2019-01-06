@@ -3,10 +3,13 @@ import "./TimeLineItem.css";
 
 interface Sound {
   color: string;
+  url: string;
 }
 
 interface Props {
   sound: Sound;
+  addToTimeLine: any;
+  id: any;
 }
 
 interface State {
@@ -35,6 +38,10 @@ class TimeLineItem extends Component<Props, State> {
     if (data) {
       let sound = JSON.parse(event.dataTransfer.getData("sound"));
       this.setState({ color: sound.color });
+
+      sound.id = event.target.id;
+
+      this.props.addToTimeLine(sound);
     }
   };
 
@@ -46,6 +53,7 @@ class TimeLineItem extends Component<Props, State> {
         onDragOver={this.onDragOver}
         onDrop={this.onDrop}
         style={{ backgroundColor: color }}
+        id={this.props.id}
       />
     );
   }
